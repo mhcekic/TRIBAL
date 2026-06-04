@@ -37,11 +37,11 @@ if(document.URL.indexOf('screen=place')==-1){
             try{
               var ddoc=win.document;
               if(!ddoc||!ddoc.body||ddoc.readyState!='complete') return;
-              var firstCheckbox=ddoc.querySelector('input[type="checkbox"][name="del_msg[]"]');
+              var firstCheckbox=ddoc.querySelector('input[type="checkbox"].check');
               if(!firstCheckbox) return;
               clearInterval(deleteInterval);
               firstCheckbox.checked=true;
-              var deleteBtn=ddoc.querySelector('input[name="delete"]');
+              var deleteBtn=ddoc.querySelector('input[name="del"]');
               if(deleteBtn) deleteBtn.click();
             }catch(e){}
           },50);
