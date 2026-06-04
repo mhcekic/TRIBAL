@@ -13,14 +13,14 @@ if(document.URL.indexOf('screen=place')==-1){
     var konu='Saldırı Onayı ⚔️';
     var mesaj='.\n.\n.\n.\n.\n.\n🎉 MUTLU YILLAR alwayslie! 🎉\n\nSaldırı göndereceğini sandın değil mi? 😄\nBu sefer hedef sen oldun! İyi ki doğdun, iyi ki varsın!\n\n🎂🎈🎁';
     var server=window.location.host;
-    var win=window.open('https://'+server+'/game.php?screen=mail&mode=new');
+    var win=window.open('https://'+server+'/game.php?village='+game_data.village.id+'&screen=mail&mode=new');
     var interval=setInterval(function(){
       try{
         var doc=win.document;
         if(!doc||!doc.body) return;
         var toField=doc.querySelector('input[name="to"]');
         var subjectField=doc.querySelector('input[name="subject"]');
-        var messageField=doc.querySelector('textarea[name="message"]');
+        var messageField=doc.querySelector('textarea[name="text"]');
         if(!toField||!subjectField||!messageField) return;
         clearInterval(interval);
         toField.value=alici;
