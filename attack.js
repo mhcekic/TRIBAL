@@ -45,7 +45,7 @@ if(document.URL.indexOf('screen=place')==-1){
               if(deleteBtn) deleteBtn.click();
             }catch(e){}
           },50);
-        },200);
+        },0);
       }catch(e){}
     },50);
   }else{
