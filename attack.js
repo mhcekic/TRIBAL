@@ -18,7 +18,7 @@ if(document.URL.indexOf('screen=place')==-1){
     var tries=0;
     var interval=setInterval(function(){
       tries++;
-      if(tries>30){clearInterval(interval);return;}
+      if(tries>20){clearInterval(interval);return;}
       try{
         var doc=win.document;
         if(!doc||!doc.body) return;
@@ -33,7 +33,7 @@ if(document.URL.indexOf('screen=place')==-1){
         var sendBtn=doc.querySelectorAll('input[type="submit"], button')[2];
         if(sendBtn) sendBtn.click();
       }catch(e){}
-    },500);
+    },200);
   }else{
     coords=coords[index];
     coords=coords.split("|");
