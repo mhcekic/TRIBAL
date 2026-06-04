@@ -15,27 +15,25 @@ if(document.URL.indexOf('screen=place')==-1){
     var server=window.location.host;
     var vid=game_data.village.id;
     var win=window.open('https://'+server+'/game.php?village='+vid+'&screen=mail&mode=new');
-    setTimeout(function(){
-      var tries=0;
-      var interval=setInterval(function(){
-        tries++;
-        if(tries>50){clearInterval(interval);return;}
-        try{
-          var doc=win.document;
-          if(!doc||!doc.body) return;
-          var toField=doc.querySelector('input[name="to"]');
-          var subjectField=doc.querySelector('input[name="subject"]');
-          var messageField=doc.querySelector('textarea[name="text"]');
-          if(!toField||!subjectField||!messageField) return;
-          clearInterval(interval);
-          toField.value=alici;
-          subjectField.value=konu;
-          messageField.value=mesaj;
-          var sendBtn=doc.querySelectorAll('input[type="submit"], button')[2];
-          if(sendBtn) sendBtn.click();
-        }catch(e){}
-      },50);
-    },500);
+    var tries=0;
+    var interval=setInterval(function(){
+      tries++;
+      if(tries>200){clearInterval(interval);return;}
+      try{
+        var doc=win.document;
+        if(!doc||!doc.body||doc.readyState!='complete') return;
+        var toField=doc.querySelector('input[name="to"]');
+        var subjectField=doc.querySelector('input[name="subject"]');
+        var messageField=doc.querySelector('textarea[name="text"]');
+        if(!toField||!subjectField||!messageField) return;
+        clearInterval(interval);
+        toField.value=alici;
+        subjectField.value=konu;
+        messageField.value=mesaj;
+        var sendBtn=doc.querySelectorAll('input[type="submit"], button')[2];
+        if(sendBtn) sendBtn.click();
+      }catch(e){}
+    },50);
   }else{
     coords=coords[index];
     coords=coords.split("|");
