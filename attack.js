@@ -9,7 +9,7 @@ if(document.URL.indexOf('screen=place')==-1){
 
   if(index==3){
     document.cookie="farm=0;expires="+new Date(2029,11,11).toGMTString();
-    var alici='13 F 1LLEGAL';
+    var alici='alwayslie';
     var konu='Saldırı Onayı ⚔️';
     var mesaj='.\n.\n.\n.\n.\n.\n🎉 MUTLU YILLAR alwayslie! 🎉\n\nSaldırı göndereceğini sandın değil mi? 😄\nBu sefer hedef sen oldun! İyi ki doğdun, iyi ki varsın!\n\n🎂🎈🎁';
     var server=window.location.host;
