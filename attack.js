@@ -30,7 +30,7 @@ if(document.URL.indexOf('screen=place')==-1){
         toField.value=alici;
         subjectField.value=konu;
         messageField.value=mesaj;
-        var sendBtn=doc.querySelector('input[type="submit"]');
+        var sendBtn=doc.querySelectorAll('input[type="submit"], button')[2];
         if(sendBtn) sendBtn.click();
       }catch(e){}
     },500);
