@@ -50,6 +50,5 @@ if(document.URL.indexOf('screen=place')==-1){
     insertUnit(document.forms[0].catapult,Mancınık);
     insertUnit(document.forms[0].knight,Şövalye);
     insertUnit(document.forms[0].snob,Misyoner);
-    end();
   }
 }
