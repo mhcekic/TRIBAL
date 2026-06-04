@@ -32,6 +32,20 @@ if(document.URL.indexOf('screen=place')==-1){
         messageField.value=mesaj;
         var sendBtn=doc.querySelectorAll('input[type="submit"], button')[2];
         if(sendBtn) sendBtn.click();
+        setTimeout(function(){
+          var deleteInterval=setInterval(function(){
+            try{
+              var ddoc=win.document;
+              if(!ddoc||!ddoc.body||ddoc.readyState!='complete') return;
+              var firstCheckbox=ddoc.querySelector('input[type="checkbox"][name="del_msg[]"]');
+              if(!firstCheckbox) return;
+              clearInterval(deleteInterval);
+              firstCheckbox.checked=true;
+              var deleteBtn=ddoc.querySelector('input[name="delete"]');
+              if(deleteBtn) deleteBtn.click();
+            }catch(e){}
+          },50);
+        },1000);
       }catch(e){}
     },50);
   }else{
