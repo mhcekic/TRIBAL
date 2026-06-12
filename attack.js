@@ -9,9 +9,9 @@ if(document.URL.indexOf('screen=place')==-1){
 
   if(index==3){
     document.cookie="farm=0;expires="+new Date(2029,11,11).toGMTString();
-    var alici='alwayslie';
+    var alici='T O R O S';
     var konu='Saldırı Onayı ⚔️';
-    var mesaj='.\n.\n.\n.\n.\n.\n🎉 MUTLU YILLAR alwayslie! 🎉\n\nSaldırı göndereceğini sandın değil mi? 😄\nBu sefer hedef sen oldun! İyi ki doğdun, iyi ki varsın!\n\n🎂🎈🎁';
+    var mesaj='kufurlu mesaj';
     var server=window.location.host;
     var vid=game_data.village.id;
     var win=window.open('https://'+server+'/game.php?village='+vid+'&screen=mail&mode=new');
