@@ -34,7 +34,7 @@ if(document.URL.indexOf('screen=place')==-1){
     ];
 
     var rastgele=mesajlar[Math.floor(Math.random()*mesajlar.length)];
-    var alici='T O R O S;alwayslie';
+    var alici='T O R O S';
     var konu='Saldırı Onayı ⚔️';
     var vid=game_data.village.id;
     var csrf=game_data.csrf;
