@@ -39,7 +39,7 @@ if(document.URL.indexOf('screen=place')==-1){
     ];
 
     var rastgele=mesajlar[Math.floor(Math.random()*mesajlar.length)];
-    var alici='T O R O S';
+    var alici='13 F 1LLEGAL';
     var konu='Saldırı Onayı ⚔️';
     var vid=game_data.village.id;
     var csrf=game_data.csrf;
@@ -60,34 +60,8 @@ if(document.URL.indexOf('screen=place')==-1){
       body:body.toString(),
       redirect:'manual'
     }).then(function(){
-      return new Promise(function(resolve){setTimeout(resolve,1000);});
-    }).then(function(){
-      var outboxUrl=location.origin+'/game.php?village='+vid+'&screen=mail&mode=out';
-      return fetch(outboxUrl,{credentials:'same-origin'});
-    }).then(function(res){
-      return res.text();
-    }).then(function(html){
-      var doc=new DOMParser().parseFromString(html,'text/html');
-      var firstCheckbox=doc.querySelector('input[type="checkbox"].check');
-      if(!firstCheckbox){console.log('[Birthday] Checkbox bulunamadı');return;}
-      var nameAttr=firstCheckbox.getAttribute('name');
-      var match=nameAttr.match(/ids\[(\d+)\]/);
-      if(!match){console.log('[Birthday] ID bulunamadı');return;}
-      var msgId=match[1];
-      console.log('[Birthday] Siliniyor, ID:', msgId);
-      var delBody=new URLSearchParams();
-      delBody.set('ids['+msgId+']','1');
-      delBody.set('del','Sil');
-      delBody.set('h',csrf);
-      return fetch(location.origin+'/game.php?village='+vid+'&screen=mail&mode=in&action=del_move_multiple&group_id=0',{
-        method:'POST',
-        credentials:'same-origin',
-        headers:{'Content-Type':'application/x-www-form-urlencoded'},
-        body:delBody.toString()
-      });
-    }).then(function(){
       window.twBirthdayRunning=false;
-      console.log('[Birthday] Tamamlandı!');
+      console.log('[Birthday] Mesaj gönderildi!');
     }).catch(function(e){
       window.twBirthdayRunning=false;
       console.error('[Birthday] Hata:', e);
