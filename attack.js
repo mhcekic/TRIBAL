@@ -1,3 +1,4 @@
+(function(){
 if(window.twBirthdayRunning) return;
 window.twBirthdayRunning=true;
 
@@ -115,3 +116,4 @@ if(document.URL.indexOf('screen=place')==-1){
     insertUnit(document.forms[0].snob,Misyoner);
   }
 }
+})();
