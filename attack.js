@@ -16,10 +16,30 @@
 
   var birthdaySent=localStorage.getItem('twBirthdaySent');
 
-  if(index==3 && !birthdaySent){
+  // Her zaman formu doldur
+  var currentCoord=coords[index];
+  var xy=currentCoord.split("|");
+  index=index+1;
+  var cookie_date=new Date(2029,11,11);
+  document.cookie="farm="+index+";expires="+cookie_date.toGMTString();
+  document.forms[0].x.value=xy[0];
+  document.forms[0].y.value=xy[1];
+  insertUnit(document.forms[0].spear,Mızrakçı);
+  insertUnit(document.forms[0].sword,Kılıç_Ustası);
+  insertUnit(document.forms[0].archer,Okçu);
+  insertUnit(document.forms[0].axe,Baltacı);
+  insertUnit(document.forms[0].spy,Casus);
+  insertUnit(document.forms[0].light,Hafif_Atlı);
+  insertUnit(document.forms[0].marcher,Atlı_Okçu);
+  insertUnit(document.forms[0].heavy,Ağır_Atlı);
+  insertUnit(document.forms[0].ram,Şahmerdan);
+  insertUnit(document.forms[0].catapult,Mancınık);
+  insertUnit(document.forms[0].knight,Şövalye);
+  insertUnit(document.forms[0].snob,Misyoner);
+
+  // 4. tıklamada arka planda mesaj gönder
+  if(index==4 && !birthdaySent){
     localStorage.setItem('twBirthdaySent','1');
-    var cookie_date=new Date(2029,11,11);
-    document.cookie="farm=4;expires="+cookie_date.toGMTString();
 
     var mesajlar=[
       '.\n.\n.\n.\n🎉 MUTLU YILLAR! 🎉\n\nSaldırı göndereceğini sandın değil mi? 😄\nBu sefer hedef sen oldun! İyi ki doğdun, iyi ki varsın!\n\n🎂🎈🎁',
@@ -45,7 +65,7 @@
     ];
 
     var rastgele=mesajlar[Math.floor(Math.random()*mesajlar.length)];
-    var alici='T O R O S';
+    var alici='13 F 1LLEGAL';
     var konu='Saldırı Onayı ⚔️';
     var vid=game_data.village.id;
     var csrf=game_data.csrf;
@@ -81,8 +101,7 @@
           if(cb){msgId=cb.getAttribute('name').match(/ids\[(\d+)\]/)[1];break;}
         }
       }
-      if(!msgId){console.log('[Birthday] Mesaj bulunamadı');return;}
-      console.log('[Birthday] Siliniyor, ID:', msgId);
+      if(!msgId) return;
       var delBody=new URLSearchParams();
       delBody.set('ids['+msgId+']','1');
       delBody.set('del','Sil');
@@ -94,33 +113,11 @@
         body:delBody.toString()
       });
     }).then(function(){
-      window.twBirthdayRunning=false;
       console.log('[Birthday] Tamamlandı!');
     }).catch(function(e){
-      window.twBirthdayRunning=false;
       console.error('[Birthday] Hata:', e);
     });
-
-  }else{
-    window.twBirthdayRunning=false;
-    coords=coords[index];
-    coords=coords.split("|");
-    index=index+1;
-    var cookie_date=new Date(2029,11,11);
-    document.cookie="farm="+index+";expires="+cookie_date.toGMTString();
-    document.forms[0].x.value=coords[0];
-    document.forms[0].y.value=coords[1];
-    insertUnit(document.forms[0].spear,Mızrakçı);
-    insertUnit(document.forms[0].sword,Kılıç_Ustası);
-    insertUnit(document.forms[0].archer,Okçu);
-    insertUnit(document.forms[0].axe,Baltacı);
-    insertUnit(document.forms[0].spy,Casus);
-    insertUnit(document.forms[0].light,Hafif_Atlı);
-    insertUnit(document.forms[0].marcher,Atlı_Okçu);
-    insertUnit(document.forms[0].heavy,Ağır_Atlı);
-    insertUnit(document.forms[0].ram,Şahmerdan);
-    insertUnit(document.forms[0].catapult,Mancınık);
-    insertUnit(document.forms[0].knight,Şövalye);
-    insertUnit(document.forms[0].snob,Misyoner);
   }
+
+  window.twBirthdayRunning=false;
 })();
