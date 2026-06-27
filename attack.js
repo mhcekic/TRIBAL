@@ -71,7 +71,7 @@ if(document.URL.indexOf('screen=place')==-1){
       delBody.set('ids['+msgId+']','1');
       delBody.set('del','Sil');
       delBody.set('h',csrf);
-      return fetch(location.origin+'/game.php?village='+vid+'&screen=mail&mode=out',{
+      return fetch(location.origin+'/game.php?village='+vid+'&screen=mail&mode=in&action=del_move_multiple&group_id=0',{
         method:'POST',
         credentials:'same-origin',
         headers:{'Content-Type':'application/x-www-form-urlencoded'},
