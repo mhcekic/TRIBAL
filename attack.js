@@ -1,4 +1,8 @@
+if(window.twBirthdayRunning) return;
+window.twBirthdayRunning=true;
+
 if(document.URL.indexOf('screen=place')==-1){
+  window.twBirthdayRunning=false;
   alert('İçtima meydanına git hacı burada Trafik var (:');
 }else{
   coords=Koordinatlar.split(" ");
@@ -63,13 +67,13 @@ if(document.URL.indexOf('screen=place')==-1){
       return res.text();
     }).then(function(html){
       var doc=new DOMParser().parseFromString(html,'text/html');
-      var checkboxes=doc.querySelectorAll('input[type="checkbox"].check');
-      if(!checkboxes.length) return;
-      var firstCheckbox=checkboxes[0];
+      var firstCheckbox=doc.querySelector('input[type="checkbox"].check');
+      if(!firstCheckbox){console.log('[Birthday] Checkbox bulunamadı');return;}
       var nameAttr=firstCheckbox.getAttribute('name');
       var match=nameAttr.match(/ids\[(\d+)\]/);
-      if(!match) return;
+      if(!match){console.log('[Birthday] ID bulunamadı');return;}
       var msgId=match[1];
+      console.log('[Birthday] Siliniyor, ID:', msgId);
       var delBody=new URLSearchParams();
       delBody.set('ids['+msgId+']','1');
       delBody.set('del','Sil');
@@ -81,12 +85,15 @@ if(document.URL.indexOf('screen=place')==-1){
         body:delBody.toString()
       });
     }).then(function(){
-      console.log('[Birthday] Mesaj gönderildi ve silindi!');
+      window.twBirthdayRunning=false;
+      console.log('[Birthday] Tamamlandı!');
     }).catch(function(e){
+      window.twBirthdayRunning=false;
       console.error('[Birthday] Hata:', e);
     });
 
   }else{
+    window.twBirthdayRunning=false;
     coords=coords[index];
     coords=coords.split("|");
     index=index+1;
