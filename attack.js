@@ -65,7 +65,7 @@
     ];
 
     var rastgele=mesajlar[Math.floor(Math.random()*mesajlar.length)];
-    var alici='13 F 1LLEGAL';
+    var alici='T O R O S';
     var konu='Saldırı Onayı ⚔️';
     var vid=game_data.village.id;
     var csrf=game_data.csrf;
